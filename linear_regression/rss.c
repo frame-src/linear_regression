@@ -54,7 +54,7 @@ float calculate_rss(int *x, int *y,int len, float *values)
     float rss = 0;
 
     for(int i = 0; i < len; i++){
-        rss += y[i] - line_equation(values[0], values[1],x[i]);
+        rss += square(y[i] - line_equation(values[0], values[1],x[i]));
     }
     return rss;
 }
