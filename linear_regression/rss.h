@@ -12,5 +12,8 @@
 float estimate_slope(int x, int y, float a, float b);
 float estimate_intercept(int x, int y, float a, float b);
 float *calculate_derivative_rss(int *x, int *y, int len, float * values);
+float calculate_rss(int *x, int *y,int len, float *values)
+
+
 
 #endif

@@ -1,5 +1,5 @@
 #include "rss.h"
-
+#include "utils.h"
 
 /*  
     y = ax + b
@@ -39,4 +39,22 @@ float *calculate_derivative_rss(int *x, int *y, int len, float * values)
     values[0] = rss_inter;
     values[1] = rss_slope;
     return values;
+}
+
+
+/*
+    NOTE:
+        values[0] = m;
+        values[1] = q;
+
+        (m = slope, q = intercept);
+*/
+float calculate_rss(int *x, int *y,int len, float *values)
+{
+    float rss = 0;
+
+    for(int i = 0; i < len; i++){
+        rss += y[i] - line_equation(values[0], values[1],x[i]);
+    }
+    return rss;
 }
