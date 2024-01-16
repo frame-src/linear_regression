@@ -2,6 +2,6 @@
 #define LINEAR_REGRESSION_H
 
 
-#include "./linear_regression/gradient_descent.c"
+#include "./linear_regression/gradient_descent.h"
 
 #endif

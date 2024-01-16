@@ -5,9 +5,9 @@
     y = ax + b
     a = slope  &&  b = intercept
 */
-float estimate_slope(int x, int y, float a, float b)
+float estimate_slope(int x, int y, float m, float q)
 {
-    float d = y - ( b + ( x * a));
+    float d = y - ( q + ( x * m));
     return( -2 * x * d );
 }
 
@@ -15,9 +15,9 @@ float estimate_slope(int x, int y, float a, float b)
     y = ax + b
     a = slope  &&  b = intercept
 */
-float estimate_intercept(int x, int y, float a, float b)
+float estimate_intercept(int x, int y, float m, float q)
 {
-    float d = y - ( b + ( x * a));
+    float d = y - ( q + ( x * m));
     return( -2 * d);
 }
 
@@ -30,14 +30,16 @@ float *calculate_derivative_rss(int *x, int *y, int len, float * values)
     int i = 0;
     float rss_inter, rss_slope;
 
-    rss_inter = rss_slope = 0;
+    rss_inter = 0; 
+    rss_slope = 1;
+
     while(i < len){
         rss_inter += estimate_intercept(x[i], y[i], values[0], values[1]);
-        rss_slope += estimate_intercept(x[i], y[i], values[0], values[1]);
+        rss_slope += estimate_slope(x[i], y[i], values[0], values[1]);
         i++;
     }
-    values[0] = rss_inter;
-    values[1] = rss_slope;
+    values[0] = rss_slope;
+    values[1] = rss_inter;
     return values;
 }
 
@@ -52,9 +54,10 @@ float *calculate_derivative_rss(int *x, int *y, int len, float * values)
 float calculate_rss(int *x, int *y,int len, float *values)
 {
     float rss = 0;
-
+    printf("values %f e %f", values[0], values[1]);
     for(int i = 0; i < len; i++){
         rss += square(y[i] - line_equation(values[0], values[1],x[i]));
     }
+
     return rss;
 }
