@@ -10,6 +10,32 @@ int price[13] = {3650,3800,4400,4450,5250,5350,5800,5990,5999,6200,6390,6390,660
 int km[13] = {240000, 139800,150500, 185530, 176000, 114800,166800,89000, 144500,84000,82029,63060,7400};
 int len = 13;
 
+
+float calculate_slope(float x, float y, float x_m, float y_m)
+{
+    float num = (x - x_m) * ( y - y_m );
+    float den = square (x - x_m);
+}
+
+float calculate_intercept( float slope, float x, float y)
+{
+    return (y - (x * slope));
+}
+
+least_square(float *x, float *y, int len)
+{
+    float *prmtrs = malloc(sizeof(float) * 2);
+    float tmp_intr,tmp_slp;
+    float m_x = mean(x, len);
+    float m_y = mean(y, len);
+
+    tmp_intr = tmp_slp = 0;
+    for(int i = 0; i < len; i++)
+        tmp_slp += calculate_slope(x[i], y[i], m_x, m_y);
+    prmtrs[0] = tmp_slp;
+    prmtrs[1] = calculate_intercept(tmp_slp, m_x, m_y);
+}
+
 void gradient_descent()
 {
     float min = 1;
