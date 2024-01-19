@@ -22,18 +22,19 @@ float calculate_intercept( float slope, float x, float y)
     return (y - (x * slope));
 }
 
-least_square(float *x, float *y, int len)
+float *least_square(float *x, float *y, int len)
 {
-    float *prmtrs = malloc(sizeof(float) * 2);
     float tmp_intr,tmp_slp;
     float m_x = mean(x, len);
     float m_y = mean(y, len);
+    float *prmtrs = (float *)safe_malloc(sizeof(float) * 2);
 
     tmp_intr = tmp_slp = 0;
     for(int i = 0; i < len; i++)
         tmp_slp += calculate_slope(x[i], y[i], m_x, m_y);
     prmtrs[0] = tmp_slp;
     prmtrs[1] = calculate_intercept(tmp_slp, m_x, m_y);
+    return prmtrs;
 }
 
 void gradient_descent()
