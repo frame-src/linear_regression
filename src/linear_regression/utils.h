@@ -6,7 +6,7 @@
 
 float square(float a);
 float line_equation(float m, float q, float x);
-float mean(float *n, int len);
+float mean(int *n, int len);
 void *safe_malloc(int size);
 
 #endif
