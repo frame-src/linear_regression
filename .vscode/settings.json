@@ -1,5 +1,8 @@
 {
     "files.associations": {
-        "gradient_descent.h": "c"
+        "gradient_descent.h": "c",
+        "rss.h": "c",
+        "stdlib.h": "c",
+        "stdio.h": "c"
     }
 }

@@ -15,6 +15,7 @@ float calculate_slope(float x, float y, float x_m, float y_m)
 {
     float num = (x - x_m) * ( y - y_m );
     float den = square (x - x_m);
+    return num / den;
 }
 
 float calculate_intercept( float slope, float x, float y)
@@ -51,6 +52,7 @@ void gradient_descent()
         prmtrs[0] = tmp[0];
         prmtrs[1] = tmp[1];
         min = calculate_rss(price, km, len, prmtrs);
+        break;
     }
     printf("%f,%f ", prmtrs[0], prmtrs[1]);
 }
