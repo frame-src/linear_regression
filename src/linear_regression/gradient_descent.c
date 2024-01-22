@@ -28,8 +28,6 @@ float *least_square(int *x, int *y, int len)
     float slp;
     float m_x = mean(x, len);
     float m_y = mean(y, len);
-    printf("VALUE OF MEAN:  x %f, y %f \n", m_x, m_y );
-
     float *prmtrs = (float *)safe_malloc(sizeof(float) * 2);
 
     slp = 0;
@@ -55,6 +53,7 @@ void gradient_descent()
         a = 0;
         prmtrs[0] = tmp[0];
         prmtrs[1] = tmp[1];
+        free(tmp);
         min = calculate_rss(price, km, len, prmtrs);
         break;
     }
