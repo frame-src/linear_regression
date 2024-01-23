@@ -22,8 +22,9 @@ void *safe_malloc(int size)
     return mem;
 }
 
-float line_equation(float m, float q, float x)
+float line_equation(float m, float q, int x)
 {
+    // printf("line equation: %f %f %i \n", m, q, x);
     return ( m * x + q);
 }
 

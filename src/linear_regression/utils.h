@@ -5,7 +5,7 @@
 #include <stdlib.h>
 
 float square(float a);
-float line_equation(float m, float q, float x);
+float line_equation(float m, float q, int x);
 float mean(int *n, int len);
 void *safe_malloc(int size);
 

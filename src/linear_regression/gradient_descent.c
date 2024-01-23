@@ -49,13 +49,14 @@ void gradient_descent()
     while( min != 0 || min > 0.009) {
         float *tmp = calculate_derivative_rss(price, km, len, prmtrs);
         if(a == 1)
-            printf("GRADIENT RESULT: %f, %f \n ", tmp[0], tmp[1]);
+            // printf("GRADIENT RESULT: %f, %f \n ", tmp[0], tmp[1]);
         a = 0;
         prmtrs[0] = tmp[0];
         prmtrs[1] = tmp[1];
-        free(tmp);
+        // printf("RSS calculat:  %f, %f\n",prmtrs[0], prmtrs[1]);
         min = calculate_rss(price, km, len, prmtrs);
-        break;
+        free(tmp);
+        // break;
     }
     printf("min = %f\n", min);
 }
