@@ -37,12 +37,21 @@ float *calculate_derivative_rss(int *x, int *y, int len, float * values)
         rss_inter += estimate_intercept(x[i], y[i], values[0], values[1]);
         rss_slope += estimate_slope(x[i], y[i], values[0], values[1]);
         i++;
+        // break;
     }
+
     values[0] = rss_slope;
     values[1] = rss_inter;
     return values;
 }
 
+/*
+    e = measured_value - expected_value;
+*/
+float residual( float m, float e)
+{
+    return (m - e);
+}
 
 /*
     NOTE:
@@ -56,8 +65,8 @@ float calculate_rss(int *x, int *y,int len, float *values)
     float rss = 0;
     // printf("Valie %f, %f\n",values[0], values[1]);
     for(int i = 0; i < len; i++){
-        rss += square(y[i] - line_equation(values[0], values[1],x[i]));
+        float expected_value = line_equation(values[0], values[1],x[i]);
+        rss += square(residual(y[i], expected_value));
     }
-    // printf("RSS: %i \n", y[i]);
     return rss;
 }

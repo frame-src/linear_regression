@@ -1,62 +1,73 @@
 
 #include "gradient_descent.h"
+#include "utils.h"
 
 float learning_rate()
 {
     return (1);
 }
-
+// price;
 int price[13] = {3650,3800,4400,4450,5250,5350,5800,5990,5999,6200,6390,6390,6600};
 int km[13] = {240000, 139800,150500, 185530, 176000, 114800,166800,89000, 144500,84000,82029,63060,7400};
 int len = 13;
 
-
-float calculate_slope(float x, float y, float x_m, float y_m)
+float mean(int *val, int len)
 {
-    float num = (x - x_m) * ( y - y_m );
-    float den = square (x - x_m);
-    return num / den;
+    float sum = 0;
+    for ( int i = 0; i < len; i++){
+        sum += val[i];
+    }
+    return (sum / len);
 }
 
-float calculate_intercept( float slope, float x, float y)
+/*
+    q = mx - y
+*/
+float init_intercept( float x_m, float y_m, float slope)
 {
-    return (y - (x * slope));
+    return ((slope * x_m) - y_m);
 }
 
-float *least_square(int *x, int *y, int len)
+/*
+    N: sum (x_i - x_m) ( y_i - y_m)
+    D: sum (x_i - x_m)^2    
+*/
+float init_slope (int *x, int *y, float x_m, float y_m, int len)
 {
-    float slp;
-    float m_x = mean(x, len);
-    float m_y = mean(y, len);
-    float *prmtrs = (float *)safe_malloc(sizeof(float) * 2);
+    float num = 0;
+    float den = 0;
 
-    slp = 0;
-    for(int i = 0; i < len; i++)
-        slp += calculate_slope(x[i], y[i], m_x, m_y);
-    prmtrs[0] = slp;
-    prmtrs[1] = calculate_intercept(slp, m_x, m_y);
-    return prmtrs;
+    for ( int i = 0; i < len; i ++){
+        num += (x[i] - x_m) * (y[i] - y_m);
+        den += square(x[i] - x_m);
+    }
+    return (num / den);
+}
+
+float *initialize_prmtrs( void *x, void *y, int len, float *prms)
+{
+    float y_m = mean(y, len);
+    float x_m = mean(x, len);
+
+    prms[0] = init_slope(x, y, x_m,y_m, len);
+    prms[1] = init_intercept(x_m, y_m, prms[0]);
+    return prms;
 }
 
 void gradient_descent()
 {
     float min = 1;
-    // float prmtrs[2] = {1,0};
-    printf("INITIAL VALUE: km: %i,  price: %i \n ", km[1], price[1]);
-    float *prmtrs = least_square(km, price, len);
-    printf("INITIAL PARAMS: %f,%f \n", prmtrs[0], prmtrs[1]);
-    int a = 1;
+    float *prms;
+
+    prms = malloc ( sizeof(float) * 2);
+    prms = initialize_prmtrs(price, km, len, prms);
     while( min != 0 || min > 0.009) {
-        float *tmp = calculate_derivative_rss(price, km, len, prmtrs);
-        if(a == 1)
-            // printf("GRADIENT RESULT: %f, %f \n ", tmp[0], tmp[1]);
-        a = 0;
-        prmtrs[0] = tmp[0];
-        prmtrs[1] = tmp[1];
-        // printf("RSS calculat:  %f, %f\n",prmtrs[0], prmtrs[1]);
-        min = calculate_rss(price, km, len, prmtrs);
-        free(tmp);
-        // break;
+        float *tmp = calculate_derivative_rss(km, price, len, prms);
+        prms[0] = tmp[0];
+        prms[1] = tmp[1];
+        min = calculate_rss( km, price, len, prms);
+        break;
     }
-    printf("min = %f\n", min);
+    free (prms);
+    // printf("%f,%f ", prmtrs[0], prmtrs[1]);
 }
