@@ -4,3 +4,4 @@ Predicts values using a linear function whose constant parameters are calculated
 
 
 [1] : https://www.youtube.com/watch?v=sDv4f4s2SB8&t=1196s
+[2] : https://www.statlearning.com/
