@@ -11,15 +11,6 @@ int price[13] = {3650,3800,4400,4450,5250,5350,5800,5990,5999,6200,6390,6390,660
 int km[13] = {240000, 139800,150500, 185530, 176000, 114800,166800,89000, 144500,84000,82029,63060,7400};
 int len = 13;
 
-float mean(int *val, int len)
-{
-    float sum = 0;
-    for ( int i = 0; i < len; i++){
-        sum += val[i];
-    }
-    return (sum / len);
-}
-
 /*
     q = mx - y
 */
@@ -68,6 +59,7 @@ void gradient_descent()
         min = calculate_rss( km, price, len, prms);
         break;
     }
+    printf("min %f \n", min);
     free (prms);
     // printf("%f,%f ", prmtrs[0], prmtrs[1]);
 }
