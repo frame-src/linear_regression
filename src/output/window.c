@@ -16,7 +16,7 @@ int calculate_max(int * n, int len)
 {
     int max = n[0];
     for ( int i = 0; i < len ; i++)
-        max = (max < n[i] ? max : n[i]);
+        max = (max > n[i] ? max : n[i]);
     return max;
 } 
 
@@ -26,8 +26,10 @@ double *normalize_points( int *n, int len)
     int max;
     max = calculate_max (n, len);
 
-    for (int i = 0 ; i<len ; i++)
-        normalized[i] = (double)((n[i] / max) +1);
+    for (int i = 0 ; i<len ; i++){
+        normalized[i] = ((n[i] / max) +1);
+        printf("%f, ", normalized[i]);
+    }
     return normalized;
 }
 
@@ -49,15 +51,17 @@ int print_image()
     double *x = normalize_points(price, 3);
     double *y = normalize_points(km, 3);
     int index = 0;
-
     fprintf(file,"P3\n%i %i\n255\n",IMG_WIDTH,IMG_HEIGHT);
     for (int j = 0; j < IMG_HEIGHT; ++j){
         for (int i = 0; i < IMG_WIDTH; ++i){
-            if ( i  == origin[0] || j == IMG_HEIGHT - origin[0] || (
-                (i >= origin[0] - 3 && i <= origin[0]) && j%10 == 0))
+            if ( i  == origin[0] || j == IMG_HEIGHT - origin[0] )
+                 fprintf(file,"%i %i %i\n", axes[0], axes[1], axes[2]);      
+            else if ( ( i >= origin[0] - 3 && i <= origin[0] && j%10 == 0 )||
+                      ( j <= IMG_HEIGHT - origin[1] + 3 && j >= IMG_HEIGHT - origin[0] && i%10 == 0 && i > 1))
                 fprintf(file,"%i %i %i\n", axes[0], axes[1], axes[2]);
             else if ((int)(x[index] * IMG_WIDTH) == i){
                 if( (int)(x[index] * IMG_WIDTH) ==  j)
+                printf("cazzo\n");
                     fprintf(file,"%i %i %i\n", axes[0], axes[1], axes[2]);
             }
             else 
