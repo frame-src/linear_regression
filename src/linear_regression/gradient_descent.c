@@ -35,6 +35,7 @@ float init_slope (int *x, int *y, float x_m, float y_m, int len)
     return (num / den);
 }
 
+
 float *ordinary_least_squares( void *x, void *y, int len, float *prms)
 {
     float y_m = mean(y, len);
@@ -53,6 +54,7 @@ void gradient_descent()
 
     prms = malloc ( sizeof(float) * 2);
     prms = ordinary_least_squares(km, price, len, prms);
+    
     while( min != 0 || min > 0.009) {
         float *tmp = calculate_derivative_rss(km, price, len, prms);
         prms[0] = tmp[0];
