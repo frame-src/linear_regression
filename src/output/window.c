@@ -12,11 +12,12 @@ FILE* open_file( char *fpath)
 int price[13] = {3650,3800,4400};
 int km[13] = {240000, 139800,150500};
 
-int clc_max(int * n, int len)
+int calculate_max(int * n, int len)
 {
     int max = n[0];
     for ( int i = 0; i < len ; i++)
         max = (max < n[i] ? max : n[i]);
+    return max;
 } 
 
 double *normalize_points( int *n, int len)
@@ -53,10 +54,11 @@ int print_image()
     for (int j = 0; j < IMG_HEIGHT; ++j){
         for (int i = 0; i < IMG_WIDTH; ++i){
             if ( i  == origin[0] || j == IMG_HEIGHT - origin[0] ||
-                 i <= origin[0] - 3 && i <= origin[0] && origin[1]%10 == 0)
+                 (i >= origin[0] - 3 && i <= origin[0] && origin[1]%10 == 0))
                 fprintf(file,"%i %i %i\n", axes[0], axes[1], axes[2]);
-            else if ( x[index] * IMG_WIDTH >= i){
-                
+            else if ((int)(x[index] * IMG_WIDTH) == i){
+                if( (int)(x[index] * IMG_WIDTH) ==  j)
+                    fprintf(file,"%i %i %i\n", axes[0], axes[1], axes[2]);
             }
             else 
                 fprintf(file,"%i %i %i\n", bg[0], bg[1], bg[2]);
