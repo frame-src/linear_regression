@@ -19,16 +19,15 @@ int clc_max(int * n, int len)
         max = (max < n[i] ? max : n[i]);
 } 
 
-int *normalize_points( int *p_x, int* p_y, int len)
+double *normalize_points( int *n, int len)
 {
-    int *rtrn = malloc(3 * sizeof(int));
-    int max_y, max_x;
-    max_y = calculate_max (p_y, len);
-    max_x = calculate_max (p_x, len);
+    double *normalized = malloc(len * sizeof(double));
+    int max;
+    max = calculate_max (n, len);
 
-    for (int i = 0 ; i< len ; i++){
-
-    }
+    for (int i = 0 ; i<len ; i++)
+        normalized[i] = (double)((n[i] / max) +1);
+    return normalized;
 }
 
 /*
@@ -46,7 +45,9 @@ int print_image()
     int axes[] = COLOR_AXES;
     int origin[] = COORD_ORIGIN;
 
-    int * points = normalize_points(NULL, 3);
+    double *x = normalize_points(price, 3);
+    double *y = normalize_points(km, 3);
+    int index = 0;
 
     fprintf(file,"P3\n%i %i\n255\n",IMG_WIDTH,IMG_HEIGHT);
     for (int j = 0; j < IMG_HEIGHT; ++j){
@@ -54,8 +55,9 @@ int print_image()
             if ( i  == origin[0] || j == IMG_HEIGHT - origin[0] ||
                  i <= origin[0] - 3 && i <= origin[0] && origin[1]%10 == 0)
                 fprintf(file,"%i %i %i\n", axes[0], axes[1], axes[2]);
-            else if (  )
-                continue;
+            else if ( x[index] * IMG_WIDTH >= i){
+                
+            }
             else 
                 fprintf(file,"%i %i %i\n", bg[0], bg[1], bg[2]);
         }
