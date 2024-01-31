@@ -53,8 +53,8 @@ int print_image()
     fprintf(file,"P3\n%i %i\n255\n",IMG_WIDTH,IMG_HEIGHT);
     for (int j = 0; j < IMG_HEIGHT; ++j){
         for (int i = 0; i < IMG_WIDTH; ++i){
-            if ( i  == origin[0] || j == IMG_HEIGHT - origin[0] ||
-                 (i >= origin[0] - 3 && i <= origin[0] && origin[1]%10 == 0))
+            if ( i  == origin[0] || j == IMG_HEIGHT - origin[0] || (
+                (i >= origin[0] - 3 && i <= origin[0]) && j%10 == 0))
                 fprintf(file,"%i %i %i\n", axes[0], axes[1], axes[2]);
             else if ((int)(x[index] * IMG_WIDTH) == i){
                 if( (int)(x[index] * IMG_WIDTH) ==  j)
