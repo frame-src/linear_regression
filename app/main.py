@@ -1,6 +1,6 @@
-from core.header import HEADER
 from core.training.execution import execute as train_model
 from core.utils.fileio import save_model
+from core.utils.header import HEADER
 import json 
 
 def main():
@@ -12,12 +12,15 @@ def main():
     else:
         print("Running with " + str(dataset_name))
         m, c = train_model(dataset_name)
-    model = {
-            "m": m,
-            "c": c
-            }
-    model_name = input("Enter a name for the model: ")
-    save_model(json.dumps(model), model_name)
 
-if __name__ == "__main__":
+    model_name = input("Enter a name for the model: ")
+    path = save_model(m, c, model_name)
+    if path:
+        print("Model correctly saved at: " + (path))
+    else : 
+        print("Model not correctly saved; Please try again.")
+    print(" To continue please train another model, or run the prediction script... Ciao")
+
+
+if __name__ == "__main__": 
     main()

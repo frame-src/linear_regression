@@ -33,7 +33,7 @@ def execute(dataset_name: str = "default_data.csv"):
     normed_y = normalize_data(y)
     m, c = linear_regression(normed_x,normed_y)
     print("best fit :    Y = " + str(m) + " X " + str(c)) 
-    plot_line_and_points(x, y, m, c)
+    plot_line_and_points(x, y, m, c, dataset_name)
     minimum = calculate_min(copy_x)
     c = c + minimum
     return m, c
