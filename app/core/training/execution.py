@@ -22,7 +22,7 @@ def linear_regression(x, y):
 
 
 def execute(dataset_name: str = "default_data.csv"):
-    print("training start with Dataset_Name: " + dataset_name)
+    print("Training with dataset name: " + dataset_name)
     x, y = execute_parsing(dataset_name)
     if not x or not y :
         print("not a valid dataset...")

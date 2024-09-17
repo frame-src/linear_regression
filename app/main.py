@@ -7,7 +7,7 @@ def main():
     print(HEADER)
     dataset_name = input( "Enter a dataset name (if none then a DEFAULT will be used): " )
     if not dataset_name :
-        print("Running with default data...")
+        print("Running with default dataset...")
         m, c = train_model()
     else:
         print("Running with " + str(dataset_name))

@@ -1,5 +1,8 @@
+import os
+
 def extract_input_from_file (filename :str = "default_data.csv") -> list :
-    PATH = "/usr/src/app/data/" + filename
+    current_directory = str(os.getcwd())
+    PATH = current_directory + "/data/" + filename
     value = []
     try:
         with open(PATH) as f:
@@ -11,7 +14,8 @@ def extract_input_from_file (filename :str = "default_data.csv") -> list :
 
 
 def save_model(model:any = None, model_name :str = None ):
-    PATH = "/usr/src/app/models/"
+    current_directory = str(os.getcwd())
+    PATH = current_directory + "/models/"
     if model_name is not None and model_name !=  "":
         PATH = PATH + model_name + ".txt"
     else:

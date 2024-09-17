@@ -27,7 +27,7 @@ def create_array_x_and_y(values: list):
 
 
 def execute_parsing(dataset_name: str = "default_data.csv") :
-    print("execute parsing...")
+    print("Execute parsing...")
     content = extract_input_from_file(dataset_name)
     if content == None:
         return None, None
