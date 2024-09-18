@@ -1,6 +1,6 @@
 from core.utils.parser import execute_parsing
 from core.training.operations import derivatives_of_e_respect_to_c, derivatives_of_e_respect_to_m,calculate_min, normalize_data
-from core.utils.plot import plot_line_and_points
+from core.utils.plot import plot_line_and_points, plot_points
 
 import copy
 
@@ -33,7 +33,8 @@ def execute(dataset_name: str = "default_data.csv"):
     normed_y = normalize_data(y)
     m, c = linear_regression(normed_x,normed_y)
     print("best fit :    Y = " + str(m) + " X " + str(c)) 
-    plot_line_and_points(x, y, m, c, dataset_name)
+    plot_points(copy_x, copy_y, dataset_name)
+    plot_line_and_points(normed_x, normed_y, m, c, dataset_name)
     minimum = calculate_min(copy_x)
     c = c + minimum
     return m, c

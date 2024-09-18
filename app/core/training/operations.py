@@ -8,7 +8,7 @@ def error(x:float, m:float, c:float, true_y:float) :
     return true_y - y
 
 
-def squared_error_mean( x: list, y:list, m:float, c:float) :
+def mean_squared_error( x: list, y:list, m:float, c:float) :
     i = 0
     while i < len(x) :
         if i == 0 :
@@ -37,7 +37,6 @@ def derivatives_of_e_respect_to_m (x:list, y: list, m:float, c:float ) :
     while i < len(y) :
         if i == 0 :
             pass
-
         else:
             e = error(x[i], m,c,y[i])
             tot = tot + ( e * x[i] )
