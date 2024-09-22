@@ -1,7 +1,8 @@
 HEADER_TRAINING = """
 \033[92m
-
+________________________________________________________________
 Linear Regression in Python
+________________________________________________________________
 
 This script implements a basic Linear Regression model using gradient descent algorithm in Python.
 It reads data from a CSV file, fits the model, and predicts the output for given inputs.
@@ -14,8 +15,8 @@ Date: YYYY-MM-DD
 
 HEADER_PREDICT = """
 \033[92m
-
-WE ARE GOING TO PREDICT VALUE
+________________________________________________________________
+Predict the Value
 
 \033[0m
 """
@@ -24,6 +25,8 @@ WE ARE GOING TO PREDICT VALUE
 
 HEADER_EVAL = """
 \033[92m
+________________________________________________________________
+
 We are going to evaluate how good the model is performing:
 We are gonna use 2 method:
     - MAE: Mean Absolute Error
