@@ -1,8 +1,9 @@
 import signal
 
 def handler(signum, frame):
-    print ("\n Ciao ciao :)")
+    print ("\nCTRL+C Exiting... \nCiao ciao :)")
     exit(0)
 
 
-signal.signal(signal.SIGINT, handler)
+def signal_handler():
+    signal.signal(signal.SIGINT, handler)

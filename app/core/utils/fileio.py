@@ -14,19 +14,20 @@ def extract_input_from_file (filename :str = "default_data.csv") -> list :
         return None
 
 
-def save_model(m: float = 0, c : float = 0, model_name :str = None )-> str:
+def save_model(m: float = 0, c : float = 0, dependent_variable: str= "km", model_name :str = None )-> str:
     current_directory = str(os.getcwd())
     PATH = current_directory + "/models/"
     model = {
                 "m": m,
-                "c": c
+                "c": c,
+                "label": dependent_variable,
         }
     if model_name is not None and model_name !=  "":
         PATH = PATH + model_name + ".txt"
     else:
         PATH = PATH + "model.txt"
     try:
-        with open(PATH, 'a') as f:
+        with open(PATH, 'w') as f:
             f.seek(0)
             f.write(json.dumps(model))
             f.truncate()

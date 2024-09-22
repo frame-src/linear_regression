@@ -15,7 +15,6 @@ def create_array_x_and_y(values: list):
     for value in values:
         if name_x == None:
             name_x, name_y = str(values[0]).split(',')
-            print("FIRST_LINE " + name_x + " " + name_y)
             x.append(name_x)
             y.append(name_y)
         else :
@@ -27,7 +26,7 @@ def create_array_x_and_y(values: list):
 
 
 def execute_parsing(dataset_name: str = "default_data.csv") :
-    print("Execute parsing...")
+    print("Executing parsing                                ...")
     content = extract_input_from_file(dataset_name)
     if content == None:
         return None, None
