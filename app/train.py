@@ -1,4 +1,4 @@
-from core.training.execution import execute as train_model
+from core.training.execution import train_model
 from core.utils.fileio import save_model
 from core.utils.header import HEADER
 from core.utils.signals_handler import signal_handler
@@ -23,11 +23,11 @@ def main():
         print("Model correctly saved at: " + (path))
     else : 
         print("Model not correctly saved; Please try again.")
-    print("Process ended; \nTo continue please train another model, or run the prediction script; \n")
+    print("\nPROCESS ENDED: To continue please train another model, or run the prediction script; \n")
 
 
 if __name__ == "__main__":
     signal_handler() 
     if error_message:
-        print(f"An error occurred: {error_message}")
+        print(f"An error occurred: \n {error_message}")
     main()

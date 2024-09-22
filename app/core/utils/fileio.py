@@ -14,7 +14,7 @@ def extract_input_from_file (filename :str = "default_data.csv") -> list :
         return None
 
 
-def save_model(m: float = 0, c : float = 0, dependent_variable: str= "km", model_name :str = None )-> str:
+def save_model(m: float = 0, c : float = 0, dependent_variable: str= "km", model_name :str = None ) -> str:
     current_directory = str(os.getcwd())
     PATH = current_directory + "/models/"
     model = {
@@ -37,7 +37,7 @@ def save_model(m: float = 0, c : float = 0, dependent_variable: str= "km", model
 
 
 
-def load_model(model_name: str = None):
+def load_model(model_name: str = None) -> str:
     current_directory = str(os.getcwd())
     if model_name is None:
         PATH = current_directory + "/models/model.txt"

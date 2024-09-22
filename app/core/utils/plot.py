@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 
 
-def create_ticks_list(l : list) :
+def create_ticks_list(l : list) -> list:
     min_l = min(l)
     max_l = max(l)
     step = (max_l - min_l) / 5

@@ -1,13 +1,13 @@
 from core.utils.fileio import extract_input_from_file
 
-def split_line(string :str) :
+def split_line(string :str) -> list:
     values = string.split(',')
     values[0] = float(values[0])
     values[1] = float(values[1])
     return values
 
 
-def create_array_x_and_y(values: list):
+def create_array_x_and_y(values: list) -> tuple[list,list]:
     x = []
     y = []
 
@@ -25,7 +25,7 @@ def create_array_x_and_y(values: list):
     return x,y
 
 
-def execute_parsing(dataset_name: str = "default_data.csv") :
+def execute_parsing(dataset_name: str = "default_data.csv") -> tuple[ list, list]:
     print("Executing parsing                                ...")
     content = extract_input_from_file(dataset_name)
     if content == None:

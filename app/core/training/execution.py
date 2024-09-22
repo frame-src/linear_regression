@@ -1,5 +1,5 @@
 from core.utils.parser import execute_parsing
-from core.training.operations import derivatives_of_e_respect_to_c, derivatives_of_e_respect_to_m,calculate_min, normalize_data
+from core.training.operations import translate_model, derivatives_of_e_respect_to_c, derivatives_of_e_respect_to_m,calculate_min, normalize_data
 from core.utils.plot import plot_line_and_points, plot_points
 from core.utils.error_handler import set_error
 
@@ -31,7 +31,7 @@ def set_dependent_variable(list_one: list, list_two: list, dependent_variable_na
     return list_two, list_one
 
 
-def execute(dataset_name: str = "default_data.csv", dependent_variable_name: str = "km") -> tuple[float, float]:
+def train_model(dataset_name: str = "default_data.csv", dependent_variable_name: str = "km") -> tuple[float, float]:
     print("Training with dataset name: " + dataset_name + "     ...")
     x, y = execute_parsing(dataset_name)
     if not x or not y :
@@ -43,9 +43,10 @@ def execute(dataset_name: str = "default_data.csv", dependent_variable_name: str
     normed_x = normalize_data(x)
     normed_y = normalize_data(y)
     m, c = linear_regression(normed_x,normed_y)
-    print("best fit :    Y = " + str(m) + " X " + str(c)) 
+    print("_______________________________________________________________________________")
+    print("BEST FIT :       Y = " + str(m) + " X " + str(c)) 
+    print("_______________________________________________________________________________")
     plot_points(copy_x, copy_y, dataset_name)
     plot_line_and_points(normed_x, normed_y, m, c, dataset_name)
-    minimum = calculate_min(copy_x)
-    c = c + minimum
+    m, c = translate_model( m, c, copy_x, copy_y)
     return m, c
