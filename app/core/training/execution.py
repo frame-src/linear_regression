@@ -2,7 +2,6 @@ from core.utils.parser import execute_parsing
 from core.training.operations import translate_model, derivatives_of_e_respect_to_c, derivatives_of_e_respect_to_m,calculate_min, normalize_data
 from core.utils.plot import plot_line_and_points, plot_points
 from core.utils.error_handler import set_error
-
 import copy
 
 def linear_regression(x, y) -> tuple[float, float]:

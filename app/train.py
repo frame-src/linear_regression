@@ -1,6 +1,6 @@
 from core.training.execution import train_model
 from core.utils.fileio import save_model
-from core.utils.header import HEADER
+from core.utils.header import HEADER_TRAINING as HEADER
 from core.utils.signals_handler import signal_handler
 from core.utils.error_handler import error_message
 import json 
@@ -28,6 +28,6 @@ def main():
 
 if __name__ == "__main__":
     signal_handler() 
+    main()
     if error_message:
         print(f"An error occurred: \n {error_message}")
-    main()

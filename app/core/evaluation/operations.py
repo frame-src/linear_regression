@@ -1,8 +1,10 @@
-def mean_squared_error( x: list, y:list, m:float, c:float) -> float :
-    i = 0
-    while i < len(x) :
-        if i == 0 :
-            pass
-        e = error(x[i], m, c, y[i])
-        tot = tot + ( e * e )
-    return tot/(i - 1)
+def error(x:float, measured_y:float, m:float, c:float) -> float:
+    y = (m * x) + c
+    return measured_y - y
+
+def abs_value(num:float) -> float:
+    if num > 0:
+        return num
+    else :
+        return -1 * num
+

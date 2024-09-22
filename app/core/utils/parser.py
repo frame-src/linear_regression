@@ -26,7 +26,6 @@ def create_array_x_and_y(values: list) -> tuple[list,list]:
 
 
 def execute_parsing(dataset_name: str = "default_data.csv") -> tuple[ list, list]:
-    print("Executing parsing                                ...")
     content = extract_input_from_file(dataset_name)
     if content == None:
         return None, None
